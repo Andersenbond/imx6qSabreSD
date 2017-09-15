@@ -1,6 +1,6 @@
- */
-*		Entry File for the board IMX6 Quad Sabre SD
-*/
+ 
+/*		Entry File for the board IMX6 Quad Sabre SD   */
+
 
 /*////////////////////////////////////////////////////////////////////////////////
 // Company: UMINHO - ESRG
@@ -70,7 +70,7 @@
 
     .equ    ARM_CACR_FULL, 0x3
 
-/* --- VFP uses coproc 10 for single-precision instructions*/
+/* --- VFP uses coproc 10 for single-precision instructions */
     .equ    ARM_VFP_SP_COP, 10
     .equ    ARM_VFP_SP_ACCESS, (ARM_CACR_FULL << (ARM_VFP_SP_COP*2))
 
@@ -100,7 +100,7 @@
 .global _start
 _start:
 	b Reset_Handler
-	.org 0x400
+	/*.org 0x400*/
 	b .
 	b .
 	b .
@@ -193,4 +193,8 @@ primary_cpu_init:
 
 /*    bl Disable_L2_cache  /*  comment this out only when you don't want to enable L2 cache, which is enabled at reset */
 /*    bl Disable_D_cache  /*   comment this out only when you want to disable D cache */
+
+
+
+.END
 
