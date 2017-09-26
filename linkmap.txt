@@ -1,0 +1,401 @@
+Archive member included to satisfy reference by file (symbol)
+
+./libgcc.a(_udivsi3.o)        mxc_serial.o (__aeabi_uidiv)
+./libgcc.a(_dvmd_tls.o)       ./libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+
+Allocating common symbols
+Common symbol       size              file
+
+malloc_lock         0x4               main.o
+g_vectNum           0x10              main.o
+esrg_ISR_Vector     0x200             main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD startup.o
+LOAD v7.o
+LOAD MP_GIC.o
+LOAD MP_SCU.o
+LOAD MP_Mutexes.o
+LOAD timer_interrupts.o
+LOAD main.o
+LOAD uart.o
+LOAD mxc_serial.o
+LOAD esrg_Interrupt.o
+
+.vectors        0x0000000080000000      0x280
+                0x0000000080000000                __code_start = .
+ *(StartUp)
+ StartUp        0x0000000080000000      0x26c startup.o
+                0x0000000080000000                Vectors
+                0x0000000080000034                IRQ_Handler
+                0x0000000080000078                Reset_Handler
+                0x0000000080000100                primaryCPUInit
+                0x00000000800001e0                secondaryCPUsInit
+ *fill*         0x000000008000026c        0x4 
+ StartUp.__stub
+                0x0000000080000270       0x10 linker stubs
+
+.init
+ *(SORT(.init))
+
+.text           0x0000000080000280      0xce8
+ *(.text*)
+ .text          0x0000000080000280        0x0 startup.o
+ .text          0x0000000080000280      0x34c v7.o
+                0x0000000080000280                enableInterrupts
+                0x0000000080000288                disableInterrupts
+                0x0000000080000290                enableCaches
+                0x00000000800002a4                disableCaches
+                0x00000000800002b8                cleanDCache
+                0x0000000080000340                cleanInvalidateDCache
+                0x00000000800003c8                invalidateCaches
+                0x0000000080000458                invalidateCaches_IS
+                0x00000000800004e8                invalidateUnifiedTLB
+                0x00000000800004f4                invalidateUnifiedTLB_IS
+                0x0000000080000500                enableBranchPrediction
+                0x0000000080000510                disableBranchPrediction
+                0x0000000080000520                flushBranchTargetCache
+                0x000000008000052c                flushBranchTargetCache_IS
+                0x0000000080000538                enableHighVecs
+                0x0000000080000548                disableHighVecs
+                0x0000000080000558                getContextID
+                0x0000000080000560                setContextID
+                0x0000000080000568                getMIDR
+                0x0000000080000570                getMPIDR
+                0x0000000080000578                getBaseAddr
+                0x0000000080000580                getCPUID
+                0x000000008000058c                goToSleep
+                0x000000008000059c                joinSMP
+                0x00000000800005b4                leaveSMP
+ .text          0x00000000800005cc      0x21c MP_GIC.o
+                0x00000000800005cc                enableGIC
+                0x00000000800005e4                disableGIC
+                0x00000000800005fc                enableIntID
+                0x0000000080000628                disableIntID
+                0x0000000080000654                setIntPriority
+                0x0000000080000698                getIntPriority
+                0x000000008000069c                setIntTarget
+                0x00000000800006d8                getIntTarget
+                0x00000000800006dc                enableGICProcessorInterface
+                0x00000000800006f4                disableGICProcessorInterface
+                0x0000000080000708                setPriorityMask
+                0x0000000080000714                setBinaryPoint
+                0x0000000080000720                readIntAck
+                0x000000008000072c                writeEOI
+                0x0000000080000738                sendSGI
+                0x000000008000075c                enableSecureFIQs
+                0x0000000080000770                disableSecureFIQs
+                0x0000000080000784                makeIntSecure
+                0x00000000800007b4                makeIntNonSecure
+                0x00000000800007e4                getIntSecurity
+ .text          0x00000000800007e8       0xd8 MP_SCU.o
+                0x00000000800007e8                getNumCPUs
+                0x00000000800007fc                enableSCU
+                0x0000000080000810                getCPUsInSMP
+                0x0000000080000824                enableMaintenanceBroadcast
+                0x000000008000083c                disableMaintenanceBroadcast
+                0x000000008000084c                secureSCUInvalidate
+                0x0000000080000868                setPrivateTimersNonSecureAccess
+                0x0000000080000894                setGlobalTimerNonSecureAccess
+ .text          0x00000000800008c0       0x80 MP_Mutexes.o
+                0x00000000800008c0                initMutex
+                0x00000000800008cc                lockMutex
+                0x00000000800008f8                unlockMutex
+                0x000000008000092c                isMutexLocked
+ .text          0x0000000080000940       0xa0 timer_interrupts.o
+                0x0000000080000940                init_timer
+ .text          0x00000000800009e0       0xc0 main.o
+                0x00000000800009e0                SGI_Handler
+                0x00000000800009ec                main_app
+                0x0000000080000a18                main
+                0x0000000080000a80                __malloc_lock
+                0x0000000080000a90                __malloc_unlock
+ .text          0x0000000080000aa0       0x7c uart.o
+                0x0000000080000aa0                uart_init
+                0x0000000080000ab4                uart_putc_polled
+                0x0000000080000acc                uart_getchar_polled
+                0x0000000080000ae4                esrg_UartPrint
+                0x0000000080000afc                esrg_UartPrintln
+ .text          0x0000000080000b1c      0x2a4 mxc_serial.o
+                0x0000000080000b1c                imx_iomux_v3_setup_pad
+                0x0000000080000b74                imx_iomux_init
+                0x0000000080000bbc                mxc_serial_setbrg
+                0x0000000080000be0                mxc_serial_putc
+                0x0000000080000c04                mxc_serial_init
+                0x0000000080000c78                printint
+                0x0000000080000cf8                cprintf
+ .text          0x0000000080000dc0       0x90 esrg_Interrupt.o
+                0x0000000080000dc0                esrg_Interrupt_Handler
+                0x0000000080000e10                esrg_Disable_Interrupt
+                0x0000000080000e18                esrg_Enable_Interrupt
+                0x0000000080000e3c                esrg_Register_IRS
+                0x0000000080000e4c                esrg_Default_ISR
+ .text          0x0000000080000e50      0x114 ./libgcc.a(_udivsi3.o)
+                0x0000000080000e50                __udivsi3
+                0x0000000080000e50                __aeabi_uidiv
+                0x0000000080000f44                __aeabi_uidivmod
+ .text          0x0000000080000f64        0x4 ./libgcc.a(_dvmd_tls.o)
+                0x0000000080000f64                __aeabi_ldiv0
+                0x0000000080000f64                __aeabi_idiv0
+
+.glue_7         0x0000000080000f68        0x0
+ .glue_7        0x0000000080000f68        0x0 linker stubs
+
+.glue_7t        0x0000000080000f68        0x0
+ .glue_7t       0x0000000080000f68        0x0 linker stubs
+
+.vfp11_veneer   0x0000000080000f68        0x0
+ .vfp11_veneer  0x0000000080000f68        0x0 linker stubs
+
+.v4_bx          0x0000000080000f68        0x0
+ .v4_bx         0x0000000080000f68        0x0 linker stubs
+
+.iplt           0x0000000080000f68        0x0
+ .iplt          0x0000000080000f68        0x0 startup.o
+
+.fini
+ *(SORT(.fini))
+
+.rodata         0x0000000080000f68       0x1c
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x0000000080000f68       0x11 mxc_serial.o
+ *fill*         0x0000000080000f79        0x3 
+ .rodata.str1.4
+                0x0000000080000f7c        0x8 mxc_serial.o
+                                          0x7 (size before relaxing)
+
+.rel.dyn        0x0000000080000f84        0x0
+ .rel.iplt      0x0000000080000f84        0x0 startup.o
+
+.eh_frame
+ *(.eh_frame)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM.exidx      0x0000000080000f84        0x0
+                0x0000000080000f84                __exidx_start = .
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x0000000080000f84                __exidx_end = .
+
+.preinit_array  0x0000000080000f84        0x0
+                [!provide]                        PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                [!provide]                        PROVIDE (__preinit_array_end, .)
+
+.init_array     0x0000000080000f84        0x0
+                [!provide]                        PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end, .)
+
+.fini_array     0x0000000080000f84        0x0
+                [!provide]                        PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data           0x0000000080000f84        0x0
+                0x0000000080000f84                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000080000f84        0x0 startup.o
+ .data          0x0000000080000f84        0x0 v7.o
+ .data          0x0000000080000f84        0x0 MP_GIC.o
+ .data          0x0000000080000f84        0x0 MP_SCU.o
+ .data          0x0000000080000f84        0x0 MP_Mutexes.o
+ .data          0x0000000080000f84        0x0 timer_interrupts.o
+ .data          0x0000000080000f84        0x0 main.o
+ .data          0x0000000080000f84        0x0 uart.o
+ .data          0x0000000080000f84        0x0 mxc_serial.o
+ .data          0x0000000080000f84        0x0 esrg_Interrupt.o
+ .data          0x0000000080000f84        0x0 ./libgcc.a(_udivsi3.o)
+ .data          0x0000000080000f84        0x0 ./libgcc.a(_dvmd_tls.o)
+
+.igot.plt       0x0000000080000f84        0x0
+ .igot.plt      0x0000000080000f84        0x0 startup.o
+
+.bss            0x0000000080000fa0      0x214
+                0x0000000080000fa0                . = ALIGN (0x4)
+                0x0000000080000fa0                __bss_start__ = .
+ *(.bss*)
+ .bss           0x0000000080000fa0        0x0 startup.o
+ .bss           0x0000000080000fa0        0x0 v7.o
+ .bss           0x0000000080000fa0        0x0 MP_GIC.o
+ .bss           0x0000000080000fa0        0x0 MP_SCU.o
+ .bss           0x0000000080000fa0        0x0 MP_Mutexes.o
+ .bss           0x0000000080000fa0        0x0 timer_interrupts.o
+ .bss           0x0000000080000fa0        0x0 main.o
+ .bss           0x0000000080000fa0        0x0 uart.o
+ .bss           0x0000000080000fa0        0x0 mxc_serial.o
+ .bss           0x0000000080000fa0        0x0 esrg_Interrupt.o
+ .bss           0x0000000080000fa0        0x0 ./libgcc.a(_udivsi3.o)
+ .bss           0x0000000080000fa0        0x0 ./libgcc.a(_dvmd_tls.o)
+ *(COMMON)
+ COMMON         0x0000000080000fa0      0x214 main.o
+                0x0000000080000fa0                malloc_lock
+                0x0000000080000fa4                g_vectNum
+                0x0000000080000fb4                esrg_ISR_Vector
+                0x00000000800011b4                . = ALIGN (0x4)
+                0x00000000800011b4                __bss_end__ = .
+
+.heap           0x00000000800011b4    0xa000c
+                0x00000000800011c0                . = ALIGN (0x40)
+ *fill*         0x00000000800011b4        0xc 
+                0x00000000800011c0                __end__ = .
+                [!provide]                        PROVIDE (end, .)
+                0x00000000800a11c0                . = (. + 0xa0000)
+ *fill*         0x00000000800011c0    0xa0000 
+
+.stack          0x00000000800a11c0    0x10000
+                0x00000000800a11c0                . = ALIGN (0x40)
+                0x00000000800b11c0                . = (. + 0x10000)
+ *fill*         0x00000000800a11c0    0x10000 
+                0x00000000800b11c0                __stack = .
+
+.irq_stacks     0x00000000800b11c0      0x400
+                0x00000000800b11c0                . = ALIGN (0x40)
+                0x00000000800b15c0                . = (. + 0x400)
+ *fill*         0x00000000800b11c0      0x400 
+                0x00000000800b15c0                __irq_stack = .
+
+.pagetable      0x0000000080500000   0x100000
+                0x0000000080500000                __pagetable_start = .
+                0x0000000080600000                . = (. + 0x100000)
+ *fill*         0x0000000080500000   0x100000 
+
+.framebuffer    0x0000000080600000   0x100000
+                0x0000000080600000                __framebuffer_start = .
+                0x0000000080700000                . = (. + 0x100000)
+ *fill*         0x0000000080600000   0x100000 
+LOAD ./libgcc.a
+OUTPUT(kernel.axf elf32-littlearm)
+
+.ARM.attributes
+                0x0000000000000000       0x39
+ .ARM.attributes
+                0x0000000000000000       0x14 startup.o
+ .ARM.attributes
+                0x0000000000000014       0x16 v7.o
+ .ARM.attributes
+                0x000000000000002a       0x16 MP_GIC.o
+ .ARM.attributes
+                0x0000000000000040       0x16 MP_SCU.o
+ .ARM.attributes
+                0x0000000000000056       0x16 MP_Mutexes.o
+ .ARM.attributes
+                0x000000000000006c       0x3d timer_interrupts.o
+ .ARM.attributes
+                0x00000000000000a9       0x3d main.o
+ .ARM.attributes
+                0x00000000000000e6       0x3d uart.o
+ .ARM.attributes
+                0x0000000000000123       0x3d mxc_serial.o
+ .ARM.attributes
+                0x0000000000000160       0x3d esrg_Interrupt.o
+ .ARM.attributes
+                0x000000000000019d       0x18 ./libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000000000001b5       0x18 ./libgcc.a(_dvmd_tls.o)
+
+.comment        0x0000000000000000       0x2b
+ .comment       0x0000000000000000       0x2b timer_interrupts.o
+                                         0x2c (size before relaxing)
+ .comment       0x000000000000002b       0x2c main.o
+ .comment       0x000000000000002b       0x2c uart.o
+ .comment       0x000000000000002b       0x2c mxc_serial.o
+ .comment       0x000000000000002b       0x2c esrg_Interrupt.o
+
+.debug_frame    0x0000000000000000      0x5ec
+ .debug_frame   0x0000000000000000      0x1a0 v7.o
+ .debug_frame   0x00000000000001a0      0x150 MP_GIC.o
+ .debug_frame   0x00000000000002f0       0x50 MP_Mutexes.o
+ .debug_frame   0x0000000000000340       0x28 timer_interrupts.o
+ .debug_frame   0x0000000000000368       0x88 main.o
+ .debug_frame   0x00000000000003f0       0x70 uart.o
+ .debug_frame   0x0000000000000460       0xec mxc_serial.o
+ .debug_frame   0x000000000000054c       0x80 esrg_Interrupt.o
+ .debug_frame   0x00000000000005cc       0x20 ./libgcc.a(_udivsi3.o)
+
+.debug_info     0x0000000000000000      0xe29
+ .debug_info    0x0000000000000000       0x72 timer_interrupts.o
+ .debug_info    0x0000000000000072      0x3d3 main.o
+ .debug_info    0x0000000000000445       0xe1 uart.o
+ .debug_info    0x0000000000000526      0x3d5 mxc_serial.o
+ .debug_info    0x00000000000008fb      0x2d8 esrg_Interrupt.o
+ .debug_info    0x0000000000000bd3      0x12b ./libgcc.a(_udivsi3.o)
+ .debug_info    0x0000000000000cfe      0x12b ./libgcc.a(_dvmd_tls.o)
+
+.debug_abbrev   0x0000000000000000      0x596
+ .debug_abbrev  0x0000000000000000       0x4f timer_interrupts.o
+ .debug_abbrev  0x000000000000004f      0x12b main.o
+ .debug_abbrev  0x000000000000017a       0xcc uart.o
+ .debug_abbrev  0x0000000000000246      0x1c6 mxc_serial.o
+ .debug_abbrev  0x000000000000040c      0x162 esrg_Interrupt.o
+ .debug_abbrev  0x000000000000056e       0x14 ./libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x0000000000000582       0x14 ./libgcc.a(_dvmd_tls.o)
+
+.debug_aranges  0x0000000000000000       0xe0
+ .debug_aranges
+                0x0000000000000000       0x20 timer_interrupts.o
+ .debug_aranges
+                0x0000000000000020       0x20 main.o
+ .debug_aranges
+                0x0000000000000040       0x20 uart.o
+ .debug_aranges
+                0x0000000000000060       0x20 mxc_serial.o
+ .debug_aranges
+                0x0000000000000080       0x20 esrg_Interrupt.o
+ .debug_aranges
+                0x00000000000000a0       0x20 ./libgcc.a(_udivsi3.o)
+ .debug_aranges
+                0x00000000000000c0       0x20 ./libgcc.a(_dvmd_tls.o)
+
+.debug_line     0x0000000000000000      0x4e3
+ .debug_line    0x0000000000000000       0x51 timer_interrupts.o
+ .debug_line    0x0000000000000051       0xf6 main.o
+ .debug_line    0x0000000000000147       0x55 uart.o
+ .debug_line    0x000000000000019c       0xe4 mxc_serial.o
+ .debug_line    0x0000000000000280       0xca esrg_Interrupt.o
+ .debug_line    0x000000000000034a       0xe1 ./libgcc.a(_udivsi3.o)
+ .debug_line    0x000000000000042b       0xb8 ./libgcc.a(_dvmd_tls.o)
+
+.debug_str      0x0000000000000000      0x43e
+ .debug_str     0x0000000000000000       0xd6 timer_interrupts.o
+                                         0xe9 (size before relaxing)
+ .debug_str     0x00000000000000d6      0x18e main.o
+                                        0x29e (size before relaxing)
+ .debug_str     0x0000000000000264       0x42 uart.o
+                                        0x10a (size before relaxing)
+ .debug_str     0x00000000000002a6       0xd0 mxc_serial.o
+                                        0x1aa (size before relaxing)
+ .debug_str     0x0000000000000376       0xc8 esrg_Interrupt.o
+                                        0x276 (size before relaxing)
+
+.debug_loc      0x0000000000000000      0x5e5
+ .debug_loc     0x0000000000000000       0x1e main.o
+ .debug_loc     0x000000000000001e       0x49 uart.o
+ .debug_loc     0x0000000000000067      0x498 mxc_serial.o
+ .debug_loc     0x00000000000004ff       0xe6 esrg_Interrupt.o
