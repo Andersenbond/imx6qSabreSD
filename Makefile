@@ -9,7 +9,7 @@ MKIMAGE = /home/andersenbond/Desktop/IMX6QSD/u-boot-fslc-2017.07-fslc/tools/mkim
 #MKIMAGE = mkimage
 
 #CFLAGS = -Wall -O0 -nostdlib -nostartfiles -ffreestanding -mfpu=neon -march=armv7-a
-CFLAGS = -mcpu=cortex-a9 -mfloat-abi=hard -mfpu=vfpv3-d16 -g -mthumb -O1 -DSTANDALONE
+CFLAGS = -mcpu=cortex-a9 -mfloat-abi=hard -mfpu=neon -g -mthumb -O1 -DSTANDALONE
 
 ASFLAGS = -Wall -mfpu=neon -march=armv7-a 
 LDFLAGS = -L . -lgcc -Map=linkmap.txt
